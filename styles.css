@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#main-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+#inner-container, #num-pad, #numbers, #ctrl-functions, #seven-to-nine, #four-to-six, #one-to-three, #zero-container, #undo-clear, #brackets, #square-root, #equals-sign {
+    display: flex;
+}
+
+#inner-container {
+    height: 500px;
+    width: 750px;
+    flex-direction: column;
+    background-color: tomato;
+    border-top:2px solid tomato;
+}
+
+#calc-screen {
+    display: flex;
+    flex: 2;
+    background-color: black;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border:12px solid tomato;
+}
+
+#num-pad {
+    flex: 4;
+}
+
+#numbers {
+    flex-direction: column;
+    flex: 3;
+}
+
+#seven-to-nine, #four-to-six, #one-to-three, #zero-container, #undo-clear, #brackets, #square-root, #equals-sign{
+    flex: 1;
+}
+
+#ctrl-functions {
+    margin: 10px;
+    flex: 2;
+    flex-direction: column;
+}
+
+#clear {
+    background-color: red;
+}
+
+#equals {
+    background-color: rgb(82, 104, 50);
+}
+
+#seven, #eight, #nine, #divide, #four,
+#five, #six, #multiply, #one, #two, #three, #subtract, #zero, #point, #percent, #add, #undo, #clear, #opening-bracket, #closing-bracket, #square, #root, #equals {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
