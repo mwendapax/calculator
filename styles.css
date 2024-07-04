@@ -13,7 +13,7 @@
    
 }
 
-#inner-container, #num-pad, #numbers, #ctrl-functions, #seven-to-nine, #four-to-six, #one-to-three, #zero-container, #undo-clear, #brackets, #square-root, #equals-sign {
+#inner-container, #num-pad, #numbers, #ctrl-functions, #seven-to-nine, #four-to-six, #one-to-three, #zero-container, #undo-clear, #equals-sign {
     display: flex;
 }
 
@@ -23,6 +23,7 @@
     flex-direction: column;
     background-color: tomato;
     border-top:2px solid tomato;
+    border-radius: 5px;
 }
 
 #calc-screen {
@@ -37,6 +38,7 @@
 
 #num-pad {
     flex: 4;
+    padding: 10px;
 }
 
 #numbers {
@@ -44,7 +46,11 @@
     flex: 3;
 }
 
-#seven-to-nine, #four-to-six, #one-to-three, #zero-container, #undo-clear, #brackets, #square-root, #equals-sign{
+#numbers div div:hover{
+    background-color: aliceblue;
+}
+
+#seven-to-nine, #four-to-six, #one-to-three, #zero-container, #undo-clear, #equals-sign{
     flex: 1;
 }
 
@@ -52,6 +58,18 @@
     margin: 10px;
     flex: 2;
     flex-direction: column;
+    background-color: #F6AC13;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#undo-clear {
+    margin: 10px;
+    gap: 10px
+}
+
+#undo {
+    background-color: aliceblue;
 }
 
 #clear {
@@ -63,7 +81,7 @@
 }
 
 #seven, #eight, #nine, #divide, #four,
-#five, #six, #multiply, #one, #two, #three, #subtract, #zero, #point, #percent, #add, #undo, #clear, #opening-bracket, #closing-bracket, #square, #root, #equals {
+#five, #six, #multiply, #one, #two, #three, #subtract, #zero, #point, #percent, #add, #undo, #clear,  #equals {
     display: flex;
     flex: 1;
     justify-content: center;
