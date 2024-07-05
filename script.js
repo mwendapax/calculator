@@ -149,9 +149,13 @@ function getNumbers(stringNumber) {
         } else if (isNaN(item) && item !== '=' && item != '.' && operator == undefined) {
             operator = item;
         } else if (isNaN(item) && item == '.' && operator == undefined){
-            numberOne += item;
+            if(!(numberOne.includes(item))){
+                numberOne += item;
+            }
         }else if (isNaN(item) && item == '.' && operator != undefined){
-            numberTwo += item;
+            if(!(numberTwo.includes(item))){
+                numberTwo += item;
+            }
         } else if (isNaN(item) && item != '=' && item != '.' && operator != undefined){
             result = operate(numberOne, operator, numberTwo);
             numberOne = ''
