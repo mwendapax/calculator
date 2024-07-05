@@ -16,6 +16,7 @@ const add = document.querySelector('#add');
 const equals = document.querySelector('#equals');
 const undo = document.querySelector('#undo');
 const clear = document.querySelector('#clear');
+const decimal = document.querySelector('#point');
 
 let currentCalc = '';
 
@@ -104,6 +105,11 @@ clear.addEventListener('click', () => {
     calcScreen.textContent = currentCalc;
 });
 
+decimal.addEventListener('click', () => {
+    currentCalc += '.';
+    calcScreen.textContent = currentCalc;
+})
+
 let numberOne = '';
 let operator;
 let numberTwo;
@@ -140,9 +146,13 @@ function getNumbers(stringNumber) {
             numberOne += item;
         } else if (!isNaN(item) && operator != undefined) {
             numberTwo += item;
-        } else if (isNaN(item) && item !== '=' && operator == undefined) {
+        } else if (isNaN(item) && item !== '=' && item != '.' && operator == undefined) {
             operator = item;
-        } else if (isNaN(item) && item != '=' && operator != undefined){
+        } else if (isNaN(item) && item == '.' && operator == undefined){
+            numberOne += item;
+        }else if (isNaN(item) && item == '.' && operator != undefined){
+            numberTwo += item;
+        } else if (isNaN(item) && item != '=' && item != '.' && operator != undefined){
             result = operate(numberOne, operator, numberTwo);
             numberOne = ''
             numberOne = result.toString();
