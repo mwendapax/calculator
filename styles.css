@@ -45,6 +45,7 @@
 #numbers {
     flex-direction: column;
     flex: 3;
+    gap: 10px;
 }
 
 #numbers div div:hover{
