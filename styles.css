@@ -55,6 +55,15 @@
     flex: 1;
 }
 
+#zero-container {
+    gap: 10px;
+}
+
+#zero-container div {
+    border: 1px solid aliceblue;
+    background-color: #F6AC13;
+}
+
 #ctrl-functions {
     margin: 10px;
     flex: 2;
