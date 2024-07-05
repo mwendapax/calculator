@@ -34,6 +34,7 @@
     justify-content: center;
     align-items: center;
     border:12px solid tomato;
+    font-size: 40px;
 }
 
 #num-pad {

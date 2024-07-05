@@ -16,6 +16,7 @@ const add = document.querySelector('#add');
 const equals = document.querySelector('#equals');
 const undo = document.querySelector('#undo');
 const clear = document.querySelector('#clear');
+const point = document.querySelector('#point');
 
 let currentCalc = '';
 
@@ -69,6 +70,11 @@ zero.addEventListener('click', () => {
     calcScreen.textContent = currentCalc;
 });
 
+point.addEventListener('click', () => {
+    currentCalc += '.';
+    calcScreen.textContent = currentCalc;
+})
+
 divide.addEventListener('click', () => {
     currentCalc += '/';
     calcScreen.textContent = currentCalc;
@@ -120,7 +126,11 @@ function operate(operandOne, operatorItem, operandTwo) {
         case '*':
             return operandOne * operandTwo;
         case '/':
+            if(operandOne == 0){
+                return("SORRY CAN'T DIVIDE BY ZERO!")
+            }else{
             return operandOne / operandTwo;
+            }
         default:
             return NaN; 
     }
@@ -132,12 +142,22 @@ function getNumbers(stringNumber) {
     numberTwo = '';
 
     for (let item of stringNumber) {
-        if (!isNaN(item) && operator === undefined && numberOne === '') {
+        if (!isNaN(item) && operator === undefined) {
             numberOne += item;
         } else if (!isNaN(item) && operator !== undefined) {
             numberTwo += item;
-        } else if (isNaN(item) && item !== '=') {
+        } else if (isNaN(item) && item !== '=' && item != '.') {
             operator = item;
+        } else if(isNaN(item) && item == '.' && operator == undefined){
+
+            if(!(numberOne.includes('.'))){
+                numberOne += item;
+            }
+
+        }else if (isNaN(item) && operator !== undefined && item == '.'){
+            if(!(numberTwo.includes('.'))){
+                numberTwo += item;
+            }
         } else if (item === '=') {
             let result = operate(numberOne, operator, numberTwo);
             currentCalc = result.toString(); 
