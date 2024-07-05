@@ -16,7 +16,6 @@ const add = document.querySelector('#add');
 const equals = document.querySelector('#equals');
 const undo = document.querySelector('#undo');
 const clear = document.querySelector('#clear');
-const point = document.querySelector('#point');
 
 let currentCalc = '';
 
@@ -70,11 +69,6 @@ zero.addEventListener('click', () => {
     calcScreen.textContent = currentCalc;
 });
 
-point.addEventListener('click', () => {
-    currentCalc += '.';
-    calcScreen.textContent = currentCalc;
-})
-
 divide.addEventListener('click', () => {
     currentCalc += '/';
     calcScreen.textContent = currentCalc;
@@ -113,10 +107,14 @@ clear.addEventListener('click', () => {
 let numberOne = '';
 let operator;
 let numberTwo;
+let result;
 
 function operate(operandOne, operatorItem, operandTwo) {
     operandOne = Number(operandOne);
     operandTwo = Number(operandTwo);
+
+    console.log(operandOne);
+    console.log(operandTwo);
 
     switch (operatorItem) {
         case '+':
@@ -126,11 +124,7 @@ function operate(operandOne, operatorItem, operandTwo) {
         case '*':
             return operandOne * operandTwo;
         case '/':
-            if(operandOne == 0){
-                return("SORRY CAN'T DIVIDE BY ZERO!")
-            }else{
             return operandOne / operandTwo;
-            }
         default:
             return NaN; 
     }
@@ -144,23 +138,25 @@ function getNumbers(stringNumber) {
     for (let item of stringNumber) {
         if (!isNaN(item) && operator === undefined) {
             numberOne += item;
-        } else if (!isNaN(item) && operator !== undefined) {
+        } else if (!isNaN(item) && operator != undefined) {
             numberTwo += item;
-        } else if (isNaN(item) && item !== '=' && item != '.') {
+        } else if (isNaN(item) && item !== '=' && operator == undefined) {
             operator = item;
-        } else if(isNaN(item) && item == '.' && operator == undefined){
+        } else if (isNaN(item) && item != '=' && operator != undefined){
+            result = operate(numberOne, operator, numberTwo);
+            numberOne = ''
+            numberOne = result.toString();
+            numberOne.slice(0, -1);
+            operator = item;
+            calcScreen.textContent = numberOne;
 
-            if(!(numberOne.includes('.'))){
-                numberOne += item;
-            }
+            
+            numberTwo = '';
 
-        }else if (isNaN(item) && operator !== undefined && item == '.'){
-            if(!(numberTwo.includes('.'))){
-                numberTwo += item;
-            }
         } else if (item === '=') {
-            let result = operate(numberOne, operator, numberTwo);
-            currentCalc = result.toString(); 
+            result = operate(numberOne, operator, numberTwo);
+            console.log(operator, numberOne, numberTwo)
+            currentCalc = result.toString();
             calcScreen.textContent = currentCalc;
 
             
